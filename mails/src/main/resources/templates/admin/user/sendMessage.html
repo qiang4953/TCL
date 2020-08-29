@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>发送邮件</title>
+</head>
+<body>
+    <form th:action="" method="post">
+        收件人：<input type="text" name="receiveMail"><br>
+        标 题：<input type="text" name="title"><br>
+        内 容：<input type="text" name="message"><br>
+        <input type="submit" value="发送">
+    </form>
+</body>
+</html>

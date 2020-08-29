@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+主页
+<shiro:hasRole name="admin">
+    <div>
+       <a href="#">管理用户</a>
+    </div>
+</shiro:hasRole>
+
+<div>
+    <a href="#">收件箱</a>
+    <a href="#">法件箱</a>
+    <a href="#">垃圾箱</a>
+</div>
+</body>
+</html>
