@@ -51,9 +51,7 @@ public class MessageController {
     @ResponseBody
     List<Message> findSendMessage(HttpSession session){
         String mail = (String) session.getAttribute("mail");
-        System.out.println(mail);
         List<Message> list = service.findSendMessage(mail);
-        System.out.println(list);
         return list;
     }
 }

@@ -52,6 +52,7 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(mail,code);
         try{
             subject.login(token);
+            subject.getSession().removeAttribute("code");
         }catch (AuthenticationException ae){
             return "login";
         }
