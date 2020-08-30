@@ -39,6 +39,7 @@ public class LoginController {
             return "发送失败";
         }
     }
+
     @GetMapping("/login")
     String goLogin(){
         return "login";

@@ -34,6 +34,7 @@ public class Message {
         this.text = text;
         this.date = date;
         this.sendState = 1;
+        this.receiveState = 0;
 
     }
 

@@ -5,7 +5,7 @@
     <title>发送邮件</title>
 </head>
 <body>
-    <form th:action="" method="post">
+    <form th:action="@{/message/sendMessage}" method="post">
         收件人：<input type="text" name="receiveMail"><br>
         标 题：<input type="text" name="title"><br>
         内 容：<input type="text" name="message"><br>

@@ -7,6 +7,8 @@
 </head>
 <body>
 主页
+
+<!--只有管理员才能用到权限-->
 <shiro:hasRole name="admin">
     <div>
        <a href="#">管理用户</a>
@@ -14,9 +16,11 @@
 </shiro:hasRole>
 
 <div>
-    <a href="#">收件箱</a>
-    <a href="#">法件箱</a>
-    <a href="#">垃圾箱</a>
+
+    <a href="admin/sendMessage">发邮件</a>
+    <a href="admin/findSendMessage">已发送</a>
+    <a href="admin/receiveMessage">收件箱</a>
+    <a href="admin/dustbin">垃圾箱</a>
 </div>
 </body>
 </html>

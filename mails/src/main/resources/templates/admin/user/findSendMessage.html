@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>垃圾箱</title>
+    <title>发件箱</title>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
 <table>
     <thead>
     <tr>
-        <th><!--垃圾邮件的图片 --> </th><th>主题</th><th>发件人</th><th>时间</th><th>内容</th>
+        <th><!--垃圾邮件的图片 --> </th><th>主题</th><th>收件人</th><th>时间</th><th>内容</th>
     </tr>
     </thead>
     <tbody id="tab"></tbody>
@@ -20,7 +20,7 @@
 <script>
     $(document).ready(function(){
         $.ajax({
-            url:"[[@{/message/dustbin}]]",
+            url:"[[@{/message/findSendMessage}]]",
             dataType:"json",
             type:"POST",
             success:function (data) {
@@ -28,10 +28,10 @@
                 $("#tab").html(str);
                 if(data.length>0){
                     //使用jquery形式遍历
-                    var img = "" //垃圾邮件图标标签的string
+                    var img = "" //图标标签的string
                     $.each(data,function(n,val){
                         str+="<tr>"+
-                            "<td>"+img+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.sendMail+"</td>"+"<td>"+val.date+"</td>"+"<td><button onclick=''>查看内容</button></td>"+
+                            "<td>"+img+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.receiveMail+"</td>"+"<td>"+val.date+"</td>"+"<td><button onclick=''>查看内容</button></td>"+
                             "</tr>";
 
                     });

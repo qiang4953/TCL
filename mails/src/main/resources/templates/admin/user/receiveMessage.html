@@ -20,19 +20,23 @@
 <script>
     $(document).ready(function(){
       $.ajax({
-          url:"",
+          url:"[[@{/message/receiveMessage}]]",
           dataType:"json",
           type:"POST",
           success:function (data) {
-              $("#tab").html("");
-              if(data.list.length>0){
+                var str ="";
+              $("#tab").html(str);
+              if(data.length>0){
                   //使用jquery形式遍历
-                  $.each(data.list,function(n,val){
-                    if (val.receiveState==0){
-                        var img = "<img src=''/>" //未查看
-                    }else {
-                        var img = "<img src=''/>" //已查看
-                    }
+                  var img = "1"; //邮件是否被拆开的图标标签的string
+                  $.each(data,function(n,val){
+
+                      //判断是否被拆开并给予不同的图片地址
+                      //   if (val.receiveState==0){
+                      //       var img = "<img src=''/>" //未查看
+                      //   }else {
+                      //       var img = "<img src=''/>" //已查看
+                      //   }
                       str+="<tr>"+
                           "<td>"+img+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.sendMail+"</td>"+"<td>"+val.date+"</td>"+"<td><button onclick=''>查看内容</button></td>"+
                          "</tr>";
