@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class SendEmail {
 
-    public String domail(String myMail, String code, String sendToMail, String title, String content) {
+    public static String domail(String myMail, String code, String sendToMail, String title, String content) {
         System.out.println(myMail);
         try {
             Properties properties = new Properties();
@@ -32,7 +32,7 @@ public class SendEmail {
             Scanner s = new Scanner(System.in);
             //设置发件人的邮箱地址
             System.out.print("输入你发邮件所用的邮箱：");
-            String mymail = "846678875@qq.com";
+            String mymail =  myMail;
             System.out.print("输入你邮箱的第三方验证码：");
             String mymima = code;
             message.setFrom(new InternetAddress(mymail));
