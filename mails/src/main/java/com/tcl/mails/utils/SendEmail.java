@@ -1,21 +1,18 @@
 package com.tcl.mails.utils;
 
-//import com.ssm.resultInfo.ResultInfo;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-import java.util.Scanner;
-
 
 /**
  * 发送邮件
  */
 public class SendEmail {
 
-    public static String domail(String myMail, String code, String sendToMail, String title, String content) {
+    public static String domail(String myMail, String code, String receiveMail, String title, String text) {
         System.out.println(myMail);
         try {
             Properties properties = new Properties();
@@ -29,34 +26,21 @@ public class SendEmail {
             Session session = Session.getInstance(properties);
             //获取邮件对象
             MimeMessage message = new MimeMessage(session);
-            Scanner s = new Scanner(System.in);
             //设置发件人的邮箱地址
-            System.out.print("输入你发邮件所用的邮箱：");
             String mymail =  myMail;
-            System.out.print("输入你邮箱的第三方验证码：");
-            String mymima = code;
+            String mymima = code;//第三方验证
             message.setFrom(new InternetAddress(mymail));
             //设置收件人的邮箱地址
-
-            System.out.print("输入收件人邮箱：");
-            String shoujianren = sendToMail;
-            message.setRecipients(Message.RecipientType.TO, shoujianren);
-
+            message.setRecipients(Message.RecipientType.TO, receiveMail);
             //设置邮箱标题
-
-            System.out.print("输入标题：");
-            String subject = title;
-            message.setSubject(subject);
-
+            message.setSubject(title);
             //设置邮件内容
-            System.out.print("输入内容：");
-            String text = content;
             message.setText(text);
             //获取邮差对象
             Transport transport = session.getTransport();
             //连接发件人的邮箱账户
             transport.connect(mymail, mymima); //自定义
-            message.setContent(content,"text/html;charset=GBK");
+            message.setContent(text,"text/html;charset=GBK");
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             return "success";
