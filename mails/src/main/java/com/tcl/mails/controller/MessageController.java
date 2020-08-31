@@ -54,4 +54,26 @@ public class MessageController {
         List<Message> list = service.findSendMessage(mail);
         return list;
     }
+
+    //删除相应的邮件
+    @RequestMapping("delSendById")
+    @ResponseBody
+    String delSendById(int id){
+        Message message = service.updateSendState(id);
+        if (null!=message){
+            return "删除成功<br><a href='/admin/findSendMessage'>返回发件箱</a>";
+        }else {
+            return "删除失败<br><a href='/admin/findSendMessage'>返回发件箱</a>";
+        }
+    }
+    @RequestMapping("delReceiveById")
+    @ResponseBody
+    String delReceiveById(int id){
+        Message message = service.updateReceiveState(id);
+        if (null!=message){
+            return "删除成功<br><a href='/admin/findSendMessage'>返回收件箱</a>";
+        }else {
+            return "删除失败<br><a href='/admin/findSendMessage'>返回收件箱</a>";
+        }
+    }
 }
