@@ -5,6 +5,7 @@ import com.tcl.mails.entity.Message;
 import com.tcl.mails.service.MessageService;
 import com.tcl.mails.utils.SendEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -147,5 +148,10 @@ public class MessageServiceImpl implements MessageService {
         Message message = findById(id);
         message.setReceiveState(0);
         return messageDao.save(message);
+    }
+    @Scheduled(fixedDelay = 10*1000)
+    void delMessage(){
+        messageDao.deleteAllBySendStateAndReceiveState(0,0);
+        System.out.println("消息更新成功");
     }
 }
