@@ -24,9 +24,9 @@ public class MessageController {
     String sendMessage(String receiveMail, String title, String message, HttpServletRequest request){
         Message s =  service.sendMessage(receiveMail,title,message);
         if (null!=s){
-            return "发送成功<br><a href='/admin/index'>返回主页</a>";
+            return "发送成功<br><a href='/admin/sendMessage'>返回发送箱</a>";
         }else {
-            return "发送失败<br><a href='/admin/index'>返回主页</a>";
+            return "发送失败<br><a href='/admin/sendMessage'>返回发送箱</a>";
         }
     }
 
