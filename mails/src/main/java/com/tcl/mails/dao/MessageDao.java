@@ -15,4 +15,6 @@ public interface MessageDao extends JpaRepository<Message,Object> {
     List<Message> findByReceiveMailAndReceiveState(String mail,int state);
     //查询已发送的邮件
     List<Message> findBySendMailAndSendState(String mail,int state);
+    //删除邮件
+    void deleteAllBySendStateAndReceiveState(int send,int receive);
 }
