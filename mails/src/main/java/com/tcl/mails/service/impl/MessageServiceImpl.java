@@ -128,14 +128,14 @@ public class MessageServiceImpl implements MessageService {
     }
 
     /**
-     * 发件人删除相应的邮件(将状态改为0)
+     * 发件人删除相应的邮件(将状态改为2)
      * @param id
      * @return
      */
     @Override
     public Message updateReceiveState(int id) {
         Message message = findById(id);
-        message.setReceiveState(0);
+        message.setReceiveState(2);
         return messageDao.save(message);
     }
 }
