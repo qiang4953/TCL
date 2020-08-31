@@ -22,7 +22,9 @@
     <form th:action="@{/login}" method="post" class="layui-form" >
         <input name="mail" placeholder="邮 箱" type="text" lay-verify="required" class="layui-input" >
         <hr class="hr15">
-        <input name="code" lay-verify="required" placeholder="验证码"  type="text" class="layui-input" onclick="setCode()">
+        <input name="code" lay-verify="required" placeholder="验证码"  type="text" class="layui-input" >
+        <hr class="hr15">
+        <input value="获取验证码" lay-verify="required" style="width:100%;" type="button"onclick="setCode()" >
         <hr class="hr15">
         <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
         <hr class="hr20" >
