@@ -33,5 +33,15 @@ public class AdminController {
     public String dustbin(){
         return "admin/user/dustbin";
     }
+    //跳转主页
+    @RequestMapping("/info")
+    public String info(){
+        return "/admin/user/info";
+    }
+    //跳转登录页
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
 
 }

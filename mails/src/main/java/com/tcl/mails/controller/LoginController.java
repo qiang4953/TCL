@@ -62,6 +62,6 @@ public class LoginController {
         }catch (AuthenticationException ae){
             return "login";
         }
-     return "admin/index";
+     return "admin/index1";
     }
 }
