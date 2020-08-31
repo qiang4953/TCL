@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping
@@ -25,15 +26,20 @@ public class LoginController {
     //发送验证码
     @RequestMapping("/sendCode")
     @ResponseBody
-    String sendCode(String mail, HttpServletRequest request){
+    String sendCode(String mail, HttpSession session){
         //得到验证码并将其发送给输入的邮箱
-        String code = messageService.sendCode(mail);
-        System.out.println(code);
+        String code =null;
+        if (session.getAttribute("code")==null) {
+             code = messageService.sendCode(mail);
+            System.out.println(code);
+        }
 
-        if (null!=code&&!code.equals("")){
+        if (null!=mail&&!mail.equals("")){
             //将邮箱和验证码保存到session中以便验证
-            request.getSession().setAttribute("mail",mail);
-            request.getSession().setAttribute("code",code);
+            session.setAttribute("mail",mail);
+            if (session.getAttribute("code")==null){
+                session.setAttribute("code",code);
+            }
             return "发送成功";
         }else {
             return "发送失败";
