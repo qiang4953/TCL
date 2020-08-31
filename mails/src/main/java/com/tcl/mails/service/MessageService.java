@@ -22,4 +22,5 @@ public interface MessageService {
     Message updateSendState(int id);
     //收件人单独删除（修改对应的状态）
     Message updateReceiveState(int id);
+
 }
