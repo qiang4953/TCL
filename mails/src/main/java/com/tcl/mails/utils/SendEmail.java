@@ -20,7 +20,7 @@ public class SendEmail {
             properties.put("mail.smtp.port", 465);// 端口号
             properties.put("mail.smtp.auth", "true");
             properties.put("mail.smtp.ssl.enable", "true");// 设置是否使用ssl安全连接 ---一般都使用
-            properties.put("mail.debug", "true");// 设置是否显示debug信息 true 会在控制台显示相关信息
+            properties.put("mail.debug", "false");// 设置是否显示debug信息 true 会在控制台显示相关信息
             //得到会话对象
             Session session = Session.getInstance(properties);
             //获取邮件对象
