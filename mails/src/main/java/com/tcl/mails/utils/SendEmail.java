@@ -12,8 +12,7 @@ import java.util.Properties;
  */
 public class SendEmail {
 
-    public static String domail(String myMail, String code, String receiveMail, String title, String text) {
-        System.out.println(myMail);
+    public static String domail(String receiveMail, String title, String text) {
         try {
             Properties properties = new Properties();
             properties.put("mail.transport.protocol", "smtp");// 连接协议
@@ -27,8 +26,8 @@ public class SendEmail {
             //获取邮件对象
             MimeMessage message = new MimeMessage(session);
             //设置发件人的邮箱地址
-            String mymail =  myMail;
-            String mymima = code;//第三方验证
+            String mymail =  "846678875@qq.com";
+            String mymima = "nkbodotapimubccf";//第三方验证
             message.setFrom(new InternetAddress(mymail));
             //设置收件人的邮箱地址
             message.setRecipients(Message.RecipientType.TO, receiveMail);

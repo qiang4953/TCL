@@ -26,7 +26,6 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("授权");
         String name = (String)principalCollection.getPrimaryPrincipal();
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
