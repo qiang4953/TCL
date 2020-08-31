@@ -149,9 +149,13 @@ public class MessageServiceImpl implements MessageService {
         message.setReceiveState(0);
         return messageDao.save(message);
     }
-    @Scheduled(fixedDelay = 10*1000)
+
+    /**
+     * 定时清理无指向的数据
+     */
+    @Scheduled(fixedDelay = 60*60*1000)
     void delMessage(){
-        messageDao.deleteAllBySendStateAndReceiveState(0,0);
+        messageDao.delete(0,0);
         System.out.println("消息更新成功");
     }
 }
