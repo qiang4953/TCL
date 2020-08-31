@@ -2,15 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
     <title>发件箱</title>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/static/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/js/pintuer.js}"></script>
+
 </head>
 <body>
-<table>
+<table class="table table-hover text-center">
     <thead>
     <tr>
-        <th><!--垃圾邮件的图片 --> </th><th>主题</th><th>收件人</th><th>时间</th><th>内容</th>
+        <th>主题</th>
+        <th>收件人</th>
+        <th>时间</th>
+        <th>内容</th>
+        <th>操作</th>
     </tr>
     </thead>
     <tbody id="tab"></tbody>
@@ -31,9 +43,8 @@
                     var img = "" //图标标签的string
                     $.each(data,function(n,val){
                         str+="<tr>"+
-                            "<td>"+img+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.receiveMail+"</td>"+"<td>"+val.date+"</td>"+"<td><button onclick=''>查看内容</button></td>"+
+                            "<td>"+val.title+"</td>"+"<td>"+val.receiveMail+"</td>"+"<td>"+val.date+"</td>"+"<td>"+val.text+"</td>"+"<td><div class=\"button-group\"><a class=\"button border-red\" role=\"button\" onclick='deleteMessage("+val.id+")'>删除</a></div>" +
                             "</tr>";
-
                     });
                 }else{
                     $("#tab").append("<tr><td colspan=8 align=\"center\">暂时没有垃圾邮件</td></tr>");
@@ -45,5 +56,29 @@
             }
         })
     })
+
+    //删除
+    function deleteMessage(id) {
+        var isNo = confirm("确认删除？")
+        if (isNo) {
+            $.ajax({
+                url:"[[@{/message/delSendById}]]",
+                type: "post",
+                dataType: "json",
+                data: {"id": id},
+                success: function (data) {
+                    if (data != null) {
+                        alert("删除成功！");
+                    } else {
+                        alert("删除失败！");
+                    }
+                },
+                error: function () {
+                    alert("删除成功！");
+                    window.location = "/admin/findSendMessage";
+                }
+            })
+        }
+    }
 </script>
 </html>
