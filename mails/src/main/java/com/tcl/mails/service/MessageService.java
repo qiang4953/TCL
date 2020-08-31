@@ -16,4 +16,10 @@ public interface MessageService {
     List<Message> dustbin(String mail);
     //查看已发送的邮件
     List<Message> findSendMessage(String mail);
+    //查看目标邮件
+    Message findById(int id);
+    //发件人单独删除（修改对应的状态）
+    Message updateSendState(int id);
+    //收件人单独删除（修改对应的状态）
+    Message updateReceiveState(int id);
 }
