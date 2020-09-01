@@ -28,11 +28,11 @@ public class MessageServiceImpl implements MessageService {
         int s = (int) (Math.random() * 1000000);
         //将s转为6位的字符串，如果不足左边补0
         String code = String.format("%06d", s);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss");
-        String date = simpleDateFormat.format(new Date());
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String date = simpleDateFormat.format(new Date());
         //将验证码和邮箱保存到数据库中
-        Message codeMessage = new Message("admin", mail, "验证码", code, date);
-        messageDao.save(codeMessage);
+//        Message codeMessage = new Message("admin", mail, "验证码", code, date);
+//        messageDao.save(codeMessage);
         //将验证码发送达到网络邮箱中
         String text ="你收到了4AM系统发来的登录验证，验证码为："+code+"该验证码十分钟内有效。";
         SendEmail.domail(mail,"验证码", text);
@@ -52,7 +52,7 @@ public class MessageServiceImpl implements MessageService {
         //获取当前登录的邮箱
         String sendMail = (String) session.getAttribute("mail");
         //创建发送的时间
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String date = simpleDateFormat.format(new Date());
         //将发送的信息保存到对象中
         Message sendMessage = new Message(sendMail, receiveMail, title, message, date);
