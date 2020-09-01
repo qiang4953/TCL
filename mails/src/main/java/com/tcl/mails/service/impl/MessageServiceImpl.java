@@ -139,12 +139,14 @@ public class MessageServiceImpl implements MessageService {
         message.setReceiveState(2);
         return messageDao.save(message);
     }
+
     /**
-     * 草稿箱删除相应的邮件(将状态改为0)
+     * 垃圾箱删除相应的邮件（状态改为0）
      * @param id
      * @return
      */
-    public Message dustbin(int id) {
+    @Override
+    public Message updateDustbinState(int id) {
         Message message = findById(id);
         message.setReceiveState(0);
         return messageDao.save(message);

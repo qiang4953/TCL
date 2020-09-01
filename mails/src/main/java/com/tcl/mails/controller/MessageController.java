@@ -76,4 +76,16 @@ public class MessageController {
             return "删除失败<br><a href='/admin/findSendMessage'>返回收件箱</a>";
         }
     }
+
+    //垃圾箱删除
+    @RequestMapping("delDustbinById")
+    @ResponseBody
+    String delDustbinById(int id){
+        Message message = service.updateDustbinState(id);
+        if (null!=message){
+            return "删除成功";
+        }else {
+            return "删除失败";
+        }
+    }
 }
