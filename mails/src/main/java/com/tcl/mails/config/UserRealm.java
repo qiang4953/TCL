@@ -49,6 +49,10 @@ public class UserRealm extends AuthorizingRealm {
         if (null == m){
             Mail m1 = new Mail(mail);
             mailDao.save(m1);
+        }else {
+            if (m.getState()==0){
+                throw new AuthenticationException();
+            }
         }
         //判断是否为管理员
         if (mail.equals("admin")){

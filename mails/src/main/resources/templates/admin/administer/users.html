@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
     <title>用户管理</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/static/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/js/pintuer.js}"></script>
 </head>
 <body>
-用户管理
+<a class="button border" id="s1" role="button" onclick='showUser(1)'>白名单</a>
+<a class="button border" id="s2" role="button" onclick='showUser(0)'>黑名单</a>
+<table class="table table-hover text-center">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>邮箱</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody id="tab"></tbody>
+</table>
 </body>
+<script>
+
+    function showUser(state) {
+        var user;
+        var duser;
+        var m;
+        if (state==1){
+            user="白名单";
+            duser="黑名单";
+            m=0;
+        }else {
+            user="黑名单";
+            duser="白名单";
+            m=1;
+        }
+        $.ajax({
+            url:"[[@{/administer/showUsers}]]",
+            dataType:"json",
+            data:{"state": state},
+            type:"POST",
+            success:function (data) {
+                var str ="";
+                $("#tab").html(str);
+                if(data.length>0){
+                    //使用jquery形式遍历
+                    var img = "" //图标标签的string
+                    $.each(data,function(n,val){
+                        str+="<tr>"+
+                            "<td>"+(n+1)+"</td>" +
+                            "<td>"+val.mail+"</td>"+
+                            "<td>"+ user +"</td>"+
+                            "<td><button onclick='updateState("+val.id+","+ m +")'>添加到"+ duser +"</button></td>" +
+                            "</tr>";
+                    });
+                }else{
+                    $("#tab").append("<tr><td colspan=8 align=\"center\">没有"+user+"用户</td></tr>");
+                }
+                $("#tab").append(str);
+            },
+            error:function () {
+                alert("服务器错误")
+            }
+        })
+    }
+
+    //修改状态
+    function updateState(id, state) {
+        $.ajax({
+            url:"[[@{/administer/updateState}]]",
+            dataType: "json",
+            data: {"id": id,"state":state},
+            success:function (data) {
+                alert(data);
+            },
+            error:function () {
+                alert("添加成功");
+                if (state==0){
+                    $("#s1").click();
+                }else {
+                    $("#s2").click();
+                }
+            }
+        })
+    }
+</script>
 </html>
