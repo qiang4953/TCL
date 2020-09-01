@@ -71,9 +71,9 @@ public class MessageController {
     String delReceiveById(int id){
         Message message = service.updateReceiveState(id);
         if (null!=message){
-            return "删除成功<br><a href='/admin/findSendMessage'>返回收件箱</a>";
+            return "success";
         }else {
-            return "删除失败<br><a href='/admin/findSendMessage'>返回收件箱</a>";
+            return null;
         }
     }
 
