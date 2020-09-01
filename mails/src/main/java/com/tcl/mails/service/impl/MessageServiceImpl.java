@@ -70,7 +70,7 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public List<Message> receiveMessage(String mail) {
-        List<Message> list = messageDao.findByReceiveMailAndReceiveStateNot(mail, 2);
+        List<Message> list = messageDao.findByReceiveMailAndReceiveState(mail, 1);
         return list;
     }
 
