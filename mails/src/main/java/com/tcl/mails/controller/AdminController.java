@@ -36,7 +36,7 @@ public class AdminController {
     //跳转主页
     @RequestMapping("/info")
     public String info(){
-        return "/admin/user/info";
+        return "admin/user/info";
     }
     //跳转登录页
     @RequestMapping("/login")

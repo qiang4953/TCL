@@ -3,7 +3,6 @@ package com.tcl.mails.service.impl;
 import com.tcl.mails.dao.MessageDao;
 import com.tcl.mails.entity.Message;
 import com.tcl.mails.service.MessageService;
-import com.tcl.mails.utils.SendEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -20,24 +19,24 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private HttpSession session;
 
-    //生成验证码用于登录或注册
-    @Override
-    public String sendCode(String mail) {
-
-        //随机生成6位验证码
-        int s = (int) (Math.random() * 1000000);
-        //将s转为6位的字符串，如果不足左边补0
-        String code = String.format("%06d", s);
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//        String date = simpleDateFormat.format(new Date());
-        //将验证码和邮箱保存到数据库中
-//        Message codeMessage = new Message("admin", mail, "验证码", code, date);
-//        messageDao.save(codeMessage);
-        //将验证码发送达到网络邮箱中
-        String text ="你收到了4AM系统发来的登录验证，验证码为："+code+"该验证码十分钟内有效。";
-        SendEmail.domail(mail,"验证码", text);
-        return code;
-    }
+//    //生成验证码用于登录或注册
+//    @Override
+//    public String sendCode(String mail) {
+//
+//        //随机生成6位验证码
+//        int s = (int) (Math.random() * 1000000);
+//        //将s转为6位的字符串，如果不足左边补0
+//        String code = String.format("%06d", s);
+////        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+////        String date = simpleDateFormat.format(new Date());
+//        //将验证码和邮箱保存到数据库中
+////        Message codeMessage = new Message("admin", mail, "验证码", code, date);
+////        messageDao.save(codeMessage);
+//        //将验证码发送达到网络邮箱中
+//        String text ="你收到了4AM系统发来的登录验证，验证码为："+code+"该验证码十分钟内有效。";
+//        SendEmail.domail(mail,"验证码", text);
+//        return code;
+//    }
 
     /**
      * 发送邮件

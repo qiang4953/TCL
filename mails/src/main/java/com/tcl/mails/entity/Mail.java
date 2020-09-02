@@ -41,6 +41,15 @@ public class Mail {
         return state;
     }
 
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "id=" + id +
+                ", mail='" + mail + '\'' +
+                ", state=" + state +
+                '}';
+    }
+
     public void setState(int state) {
         this.state = state;
     }

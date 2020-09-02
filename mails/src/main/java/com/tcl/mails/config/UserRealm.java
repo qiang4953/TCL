@@ -48,7 +48,7 @@ public class UserRealm extends AuthorizingRealm {
         Mail m = mailDao.findByMail(mail);
         if (null == m){
             Mail m1 = new Mail(mail);
-            mailDao.save(m1);
+            m=mailDao.save(m1);
         }else {
             if (m.getState()==0){
                 throw new AuthenticationException();

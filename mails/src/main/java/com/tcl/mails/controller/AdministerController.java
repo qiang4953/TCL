@@ -18,14 +18,14 @@ public class AdministerController {
     MailService mailService;
 
     //跳转到管理员界面
-    @RequestMapping("users")
+    @RequestMapping("/users")
     @RequiresRoles("admin")
     public String user(){
       return "admin/administer/users";
     }
 
     //查看所有状态相同的用户（1位白名单，0为黑名单）
-    @RequestMapping("showUsers")
+    @RequestMapping("/showUsers")
     @ResponseBody
     @RequiresRoles("admin")
     public List<Mail> showUser(int state){
@@ -33,7 +33,7 @@ public class AdministerController {
     }
 
     //修改用户的状态
-    @RequestMapping("updateState")
+    @RequestMapping("/updateState")
     @RequiresRoles("admin")
     @ResponseBody
     public String updateState(int id,int state){

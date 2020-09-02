@@ -1,5 +1,6 @@
 package com.tcl.mails.controller;
 
+import com.tcl.mails.service.CodeMailService;
 import com.tcl.mails.service.MessageService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,8 +21,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping
 public class LoginController {
 
+
     @Autowired
-    private MessageService messageService;
+    private CodeMailService codeMailService;
 
     //发送验证码
     @RequestMapping("/sendCode")
@@ -30,8 +32,8 @@ public class LoginController {
         //得到验证码并将其发送给输入的邮箱
         String code =null;
         if (session.getAttribute("code")==null) {
-             code = messageService.sendCode(mail);
-            System.out.println(code);
+             code = codeMailService.simpleMail(mail);
+            System.out.println(mail +"\t"+code);
         }
 
         if (null!=mail&&!mail.equals("")){

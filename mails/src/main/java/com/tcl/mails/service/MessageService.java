@@ -7,7 +7,7 @@ import java.util.List;
 public interface MessageService {
 
     //发送验证码
-    String sendCode(String mail);
+//    String sendCode(String mail);
     //发送邮件
     Message sendMessage(String receiveMail, String title, String message);
     //查询收件箱
