@@ -53,9 +53,6 @@
                   //使用jquery形式遍历
                   var a = 0; //邮件是否被拆开的图标标签的string
                   $.each(data,function(n,val){
-                      var s = val.text;
-                      var ary = ['0',s];
-                      console.log(ary);
                       a = a + 1;
                       str+="<tr>"+
                           "<td>"+a+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.sendMail+"</td>"+"<td>"+val.date+"</td>"+"<td><span style=\"display: none\">"+val.text+"</span><button onclick='findText(this)'>查看详情</button></td>"+"<td><div class=\"button-group\"><a class=\"button border-red\" role=\"button\" onclick='deleteMessage("+val.id+")'>删除</a></div></td>"+
