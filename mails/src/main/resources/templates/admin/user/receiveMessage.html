@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>收件箱</title>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/static/css/pintuer.css}">
@@ -46,16 +46,19 @@
           dataType:"json",
           type:"POST",
           success:function (data) {
-              console.log(data)
+              console.log(data);
                 var str ="";
               $("#tab").html(str);
               if(data.length>0){
                   //使用jquery形式遍历
                   var a = 0; //邮件是否被拆开的图标标签的string
                   $.each(data,function(n,val){
+                      var s = val.text;
+                      var ary = ['0',s];
+                      console.log(ary);
                       a = a + 1;
                       str+="<tr>"+
-                          "<td>"+a+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.sendMail+"</td>"+"<td>"+val.date+"</td>"+"<td><button onclick='findText("+val.text+")'>查看详情</button></td>"+"<td><div class=\"button-group\"><a class=\"button border-red\" role=\"button\" onclick='deleteMessage("+val.id+")'>删除</a></div>"+
+                          "<td>"+a+"</td>"+"<td>"+val.title+"</td>"+"<td>"+val.sendMail+"</td>"+"<td>"+val.date+"</td>"+"<td><span style=\"display: none\">"+val.text+"</span><button onclick='findText(this)'>查看详情</button></td>"+"<td><div class=\"button-group\"><a class=\"button border-red\" role=\"button\" onclick='deleteMessage("+val.id+")'>删除</a></div>"+
                          "</tr>";
                   });
               }else{
@@ -70,12 +73,14 @@
     })
 
     //查看详情
-    function findText(text) {
+    function findText(obj) {
         //显示修改的模态框
         $("#window").show();
         $("#big").hide();
         //把选中行的数据复制给修改框里的表单元素
-        $("#message").val(text);
+        var text = $(obj).parent().parent().find("td").eq(4).text();
+        var str = text.substring(0,text.length-4);
+        $("#message").val(str);
     }
 
 
