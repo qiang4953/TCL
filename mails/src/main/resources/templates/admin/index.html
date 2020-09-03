@@ -7,15 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
     <title>4AM邮件系统</title>
-    <link rel="stylesheet" th:href="@{static/css/pintuer.css}">
-    <link rel="stylesheet" th:href="@{static/css/admin.css}">
-    <script th:src="@{static/js/jquery.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/pintuer.css}">
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <script th:src="@{/static/js/jquery.js}"></script>
 </head>
 <body style="background-color:#f2f9fd;">
 <div class="header" style="background-color: #00aaee">
   <div class="logo margin-big-left fadein-top">
-    <h1><img th:src="@{static/images/y.jpg}" class="radius-circle rotate-hover" height="50" alt="" />4AM邮件系统</h1>
+    <h1><img th:src="@{/static/images/y.jpg}" class="radius-circle rotate-hover" height="50" alt="" />4AM邮件系统</h1>
   </div>
+
+    <div class="head-l"><a class="button button-little bg-green" th:href="@{/admin/index}"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" th:href="@{/login}"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav" style="background-color: #00aaee">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
@@ -47,7 +49,7 @@ $(function(){
   <li><a href="##" id="a_leader_txt">网站信息</a></li>
 </ul>
 <div class="admin">
-  <iframe scrolling="auto" rameborder="0" href="/admin/info" name="right" width="100%" height="100%"></iframe>
+  <iframe scrolling="auto" rameborder="0" src="/admin/info" name="right" width="100%" height="100%"></iframe>
 </div>
 <div style="text-align:center;">
 <p>来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
