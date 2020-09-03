@@ -58,6 +58,7 @@ public class UserRealm extends AuthorizingRealm {
         if (mail.equals("admin")){
             //判断管理员密码
             if (code.equals("admin")){
+                request.getSession().setAttribute("mail","admin");
                 return new SimpleAuthenticationInfo(token.getPrincipal(),token.getCredentials(),getName());
             }else {
                 throw new AuthenticationException();
